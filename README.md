@@ -2,3 +2,18 @@
 A recursive descent parser for a calculator
 
 Just compile and see. `gcc main.c`
+
+Input examples: 
+```
+(2+2)*2+1
+5*5+(1-1)
+8/4/2
+```
+Output:
+```
+9
+25
+4
+```
+
+8/4/2 -> 8/2 -> 4
