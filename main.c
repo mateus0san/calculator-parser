@@ -11,12 +11,13 @@ double sumSub(void);
 double multDiv(void);
 int getoperator(void);
 int getnumber(void);
+int gettoken(void);
 
 int main(void)
 {
 	double result;
 
-	while (getnumber()) {
+	while (gettoken()) {
 		result = sumSub();
 		printf("%lf\n", result);
 	}
@@ -26,6 +27,28 @@ int main(void)
 
 int getch(void);
 void ungetch(int);
+
+int gettoken(void)
+{
+	double result;
+	int c; 
+
+	while ((c = getch()) == ' ' || c == '\t')
+		;
+	if (c == '(') {
+		if (getnumber()) {
+			result = sumSub();
+			if (operator != ')')
+				return 0;
+			snprintf(number,  sizeof(number), "%lf", result);
+			return 1;
+		} else return 0;
+	} else if (isdigit(c) || c == '+' || c == '-') {
+		ungetch(c);
+		return getnumber();
+	}
+	return 0;
+}
 
 int getnumber(void)
 {
@@ -90,7 +113,7 @@ double multDiv(void)
 	if (getoperator()) {
 		op = operator;
 		if (op == '*' || op == '/')
-			if(getnumber()) {
+			if(gettoken()) {
 				double num2 = multDiv();
 				if (op == '*')
 					return num1 * num2; 
@@ -109,7 +132,7 @@ double sumSub(void)
 	num1 = multDiv();
 	op = operator;
 	if (op == '-' || op == '+')
-		if (getnumber()) {
+		if (gettoken()) {
 			double num2 = sumSub();
 			return (op == '+') ? num1 + num2 : num1 - num2;
 		}
