@@ -36,7 +36,7 @@ int gettoken(void)
 	while ((c = getch()) == ' ' || c == '\t')
 		;
 	if (c == '(') {
-		if (getnumber()) {
+		if (gettoken()) {
 			result = sumSub();
 			if (operator != ')')
 				return 0;
