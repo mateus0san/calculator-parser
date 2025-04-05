@@ -1,7 +1,8 @@
-# C-Calculator-Parser
+# C Calculator Parser
 A recursive descent parser for a calculator
+simple and bad
 
-Just compile and see. `gcc main.c`
+compiling -> `gcc main.c`
 
 Input examples: 
 ```
