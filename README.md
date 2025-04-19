@@ -6,7 +6,7 @@ compiling -> `gcc main.c`
 Input examples: 
 ```
 (2+2)*2+1
-5*5+(1-1)
+5*5+(12-12)
 8/4/2
 ```
 Output:
